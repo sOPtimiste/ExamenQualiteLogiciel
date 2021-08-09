@@ -1,11 +1,16 @@
 package com.example.examen.entities;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "produis")
@@ -15,8 +20,25 @@ public class Produit {
 	private Long id;
 	
 	
+	public Set<DetailCommande> getDetailsCommandes() {
+		return detailsCommandes;
+	}
+
+	public void setDetailsCommandes(Set<DetailCommande> detailsCommandes) {
+		this.detailsCommandes = detailsCommandes;
+	}
+
 	@Column(name = "code_produit")
 	private String code;
+	
+	private String designation;
+	
+	@Column(name = "prix_unitaire")
+	private float prixUnitaire;
+	
+	@JsonBackReference
+	@OneToMany(mappedBy = "produit")
+	private Set<DetailCommande> detailsCommandes;
 
 	public Long getId() {
 		return id;
@@ -50,10 +72,7 @@ public class Produit {
 		this.prixUnitaire = prixUnitaire;
 	}
 
-	private String designation;
 	
-	@Column(name = "prix_unitaire")
-	private float prixUnitaire;
 	
 	
 

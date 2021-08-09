@@ -1,11 +1,16 @@
 package com.example.examen.entities;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "representants")
@@ -16,6 +21,21 @@ public class Representant {
 	
 	@Column(name = "code_representant")
 	private String codeRepresentant;
+	
+	public Set<Client> getClients() {
+		return clients;
+	}
+
+	public void setClients(Set<Client> clients) {
+		this.clients = clients;
+	}
+
+	@Column(name = "nom_representant")
+	private String nomRepresentant;
+	
+	@JsonBackReference
+	@OneToMany(mappedBy = "representant")
+	private Set<Client> clients;
 	
 	public Long getId() {
 		return id;
@@ -41,7 +61,6 @@ public class Representant {
 		this.nomRepresentant = nomRepresentant;
 	}
 
-	@Column(name = "nom_representant")
-	private String nomRepresentant;
+
 
 }

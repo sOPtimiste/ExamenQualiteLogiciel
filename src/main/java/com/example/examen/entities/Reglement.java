@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -17,6 +18,27 @@ public class Reglement {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@Column(name = "num_reglement")
+	private String numRegmement;
+	
+	public Commande getCommande() {
+		return commande;
+	}
+
+	public void setCommande(Commande commande) {
+		this.commande = commande;
+	}
+
+	@Temporal(TemporalType.DATE)
+	@Column(name = "creation_date")
+	private Date creationDate;
+	
+	@Column(name = "montant_reglement")
+	private float montant;
+	
+	@ManyToOne
+	private Commande commande;
 	
 	public Long getId() {
 		return id;
@@ -50,14 +72,6 @@ public class Reglement {
 		this.montant = montant;
 	}
 
-	@Column(name = "num_reglement")
-	private String numRegmement;
 	
-	@Temporal(TemporalType.DATE)
-	@Column(name = "creation_date")
-	private Date creationDate;
-	
-	@Column(name = "montant_reglement")
-	private float montant;
 
 }
