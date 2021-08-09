@@ -23,7 +23,7 @@ public class Commande {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "numero_commande")
+	@Column(name = "numero_commande",length = 10)
 	private String numero;
 	
 	public Client getClient() {
