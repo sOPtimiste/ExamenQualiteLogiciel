@@ -37,6 +37,17 @@ public class Representant {
 	@OneToMany(mappedBy = "representant")
 	private Set<Client> clients;
 	
+	
+	
+	public Representant() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Representant(String codeRepresentant, String nomRepresentant) {
+		this.codeRepresentant = codeRepresentant;
+		this.nomRepresentant = nomRepresentant;
+	}
+
 	public Long getId() {
 		return id;
 	}

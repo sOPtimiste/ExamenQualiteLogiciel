@@ -26,6 +26,8 @@ public class Commande {
 	@Column(name = "numero_commande",length = 10)
 	private String numero;
 	
+	
+
 	public Client getClient() {
 		return client;
 	}
